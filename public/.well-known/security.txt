@@ -1,0 +1,5 @@
+Contact: mailto:contato@fazendaagrofort.com.br
+Expires: 2027-07-23T23:59:59Z
+Preferred-Languages: pt-BR
+Canonical: https://agrofort.64.181.178.125.nip.io/.well-known/security.txt
+Policy: https://agrofort.64.181.178.125.nip.io/privacidade

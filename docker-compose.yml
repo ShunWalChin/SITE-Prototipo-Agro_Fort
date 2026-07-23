@@ -1,0 +1,43 @@
+name: agrofort
+
+services:
+  web:
+    container_name: agrofort-web
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: agrofort-web:1.0.0
+    restart: unless-stopped
+    init: true
+    ports:
+      - "127.0.0.1:4188:3000"
+    environment:
+      NODE_ENV: production
+      NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-https://agrofort.64.181.178.125.nip.io}
+      NEXT_PUBLIC_GTM_ID: ${NEXT_PUBLIC_GTM_ID:-}
+      N8N_WEBHOOK_URL: ${N8N_WEBHOOK_URL:-}
+      N8N_WEBHOOK_TOKEN: ${N8N_WEBHOOK_TOKEN:-}
+    networks:
+      - agrofort_internal
+    read_only: true
+    tmpfs:
+      - /tmp:size=64m,mode=1777
+      - /app/.next/cache:size=128m,uid=1001,gid=1001,mode=0755
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    pids_limit: 180
+    mem_limit: 640m
+    cpus: "1.25"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:3000/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 25s
+
+networks:
+  agrofort_internal:
+    name: agrofort_internal
+    driver: bridge
