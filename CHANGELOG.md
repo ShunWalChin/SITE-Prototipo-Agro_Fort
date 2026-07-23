@@ -7,7 +7,7 @@ Este projeto segue versionamento semântico para releases planejadas. As datas u
 ### Adicionado
 
 - testes unitários e de contrato para domínio, site e endpoint de leads;
-- CI para lint, tipos, testes, build e auditoria de dependências;
+- scripts unificados para lint, tipos, testes, build e auditoria de dependências;
 - documentação completa de arquitetura, operação, webhook, testes, segurança e uso;
 - `security.txt` para divulgação responsável;
 - configuração Nginx de produção versionada e script transacional de aplicação;

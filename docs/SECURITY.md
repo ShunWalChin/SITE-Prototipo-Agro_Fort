@@ -21,7 +21,7 @@ Esse trabalho reduz risco e produz evidência repetível, mas não substitui pen
 - webhook server-side com segredo opcional, timeout, retry seletivo e idempotência;
 - logs técnicos sem PII;
 - `security.txt` para divulgação responsável;
-- CI e Dependabot.
+- validação automatizada local e Dependabot.
 
 ## Evidências automatizadas
 
@@ -49,7 +49,7 @@ Os probes complementares verificam:
 | disponibilidade | spam e corpo excessivo | dois rate limits e limites de tamanho |
 | navegador | XSS/clickjacking | React escaping, CSP, `frame-ancestors none`, XFO DENY |
 | host compartilhado | movimento lateral | porta loopback, rede dedicada, contêiner sem privilégios |
-| cadeia de dependências | pacote vulnerável | lockfile, audit, CI e Dependabot |
+| cadeia de dependências | pacote vulnerável | lockfile, audit e Dependabot |
 
 ## Riscos residuais
 
