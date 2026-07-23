@@ -9,6 +9,7 @@ Este projeto segue versionamento semântico para releases planejadas. As datas u
 - design system Agrofort com regras globais e especializações para home,
   catálogo e contato;
 - auditoria UI/UX baseada nas heurísticas do UI UX Pro Max;
+- contrato versionado do pipeline de qualidade, DAST, release e GitHub;
 - alternativa textual acessível para o radar sensorial;
 - testes unitários e de contrato para domínio, site e endpoint de leads;
 - scripts unificados para lint, tipos, testes, build e auditoria de dependências;

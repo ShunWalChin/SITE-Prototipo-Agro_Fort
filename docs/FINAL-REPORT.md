@@ -68,12 +68,13 @@ A execução foi automatizada, passiva e não destrutiva, complementada por prob
 - segurança: `docs/SECURITY.md`;
 - manual: `docs/USER-MANUAL.md`;
 - evidência ZAP: `docs/security/raw/`;
+- pipeline de produção: `docs/DEPLOYMENT-PIPELINE.md`;
 - auditoria UI/UX: `docs/UI-UX-PRO-MAX-AUDIT.md`;
 - design system: `design-system/agrofort/MASTER.md`.
 
 ## Publicação
 
-- release final: `20260723-161843`;
+- release final: `20260723-162844`;
 - contêiner: `agrofort-web`, healthcheck aprovado;
 - Nginx: configuração validada antes do reload e backup preservado;
 - branch GitHub: `agent/full-system-audit`;

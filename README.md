@@ -67,6 +67,7 @@ O WebGL abaixo da dobra é inicializado por proximidade da viewport. Em telas pe
 
 - [Arquitetura](docs/ARCHITECTURE.md)
 - [Operação e deploy](docs/OPERATIONS.md)
+- [Pipeline de produção](docs/DEPLOYMENT-PIPELINE.md)
 - [Contrato n8n/webhook](docs/N8N-WEBHOOK.md)
 - [Estratégia de testes](docs/TESTING.md)
 - [Segurança e pentest](docs/SECURITY.md)

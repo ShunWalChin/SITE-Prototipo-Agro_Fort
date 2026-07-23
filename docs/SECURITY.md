@@ -28,7 +28,9 @@ Esse trabalho reduz risco e produz evidência repetível, mas não substitui pen
 Os relatórios brutos ficam em `docs/security/raw/`:
 
 - `zap-baseline-before.*`: estado anterior ao hardening;
-- `zap-baseline-after.*`: estado após o deploy e correções.
+- `zap-baseline-after.*`: estado após o deploy e correções;
+- `zap-ui-ux-20260723-161843.*`: revalidação da release refinada, com 149 URLs,
+  62 regras aprovadas, zero falhas e cinco grupos de aviso residual.
 
 Os probes complementares verificam:
 

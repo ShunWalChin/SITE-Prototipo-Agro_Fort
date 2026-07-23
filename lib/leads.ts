@@ -35,7 +35,7 @@ const controlCharacters = /[\u0000-\u001f\u007f]/g;
  * Normaliza texto vindo da borda HTTP sem tentar “corrigir” dados de negócio.
  * O limite também protege o webhook contra payloads excessivos.
  */
-export function cleanLeadText(value: unknown, maxLength: number): string {
+function cleanLeadText(value: unknown, maxLength: number): string {
   if (typeof value !== "string") return "";
   return value
     .normalize("NFKC")

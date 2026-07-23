@@ -1,6 +1,5 @@
 import { describe, expect, it } from "vitest";
 import {
-  cleanLeadText,
   FixedWindowRateLimiter,
   getClientAddress,
   isHoneypotFilled,
@@ -9,24 +8,18 @@ import {
 } from "./leads";
 
 describe("lead contract", () => {
-  it("normalizes control characters and enforces length", () => {
-    expect(cleanLeadText("  Ana\u0000  Maria  ", 20)).toBe("Ana Maria");
-    expect(cleanLeadText("123456", 4)).toBe("1234");
-    expect(cleanLeadText({ value: "Ana" }, 20)).toBe("");
-  });
-
-  it("accepts a valid catalog lead", () => {
+  it("accepts and normalizes a valid catalog lead", () => {
     const result = validateLeadPayload({
-      name: "Adenilde",
+      name: "  Adenilde\u0000  Viera ",
       phone: "(38) 9 9940-2015",
       interest: "conhecer os produtos",
-      message: "Quero conhecer os lotes.",
+      message: " Quero   conhecer os lotes. ",
     }, "2026-07-23T18:00:00.000Z");
 
     expect(result).toEqual({
       ok: true,
       lead: {
-        name: "Adenilde",
+        name: "Adenilde Viera",
         phone: "(38) 9 9940-2015",
         interest: "conhecer os produtos",
         message: "Quero conhecer os lotes.",
@@ -36,11 +29,32 @@ describe("lead contract", () => {
     });
   });
 
+  it("enforces text limits at the public contract", () => {
+    const result = validateLeadPayload({
+      name: "A".repeat(90),
+      phone: "38999402015",
+      interest: "conhecer os produtos",
+      message: "M".repeat(620),
+    }, "2026-07-23T18:00:00.000Z");
+
+    expect(result.ok).toBe(true);
+    if (result.ok) {
+      expect(result.lead.name).toHaveLength(80);
+      expect(result.lead.message).toHaveLength(500);
+    }
+  });
+
   it("rejects unknown interests and malformed phones", () => {
     expect(validateLeadPayload({
       name: "Ana",
       phone: "123",
       interest: "administrador",
+    }, "2026-07-23T18:00:00.000Z")).toEqual({ ok: false, error: "invalid_fields" });
+
+    expect(validateLeadPayload({
+      name: { value: "Ana" },
+      phone: "38999402015",
+      interest: "conhecer os produtos",
     }, "2026-07-23T18:00:00.000Z")).toEqual({ ok: false, error: "invalid_fields" });
   });
 
