@@ -68,4 +68,4 @@ A execução foi automatizada, passiva e não destrutiva, complementada por prob
 - contêiner: `agrofort-web`, healthcheck aprovado;
 - Nginx: configuração validada antes do reload e backup preservado;
 - branch GitHub: `agent/full-system-audit`;
-- PR: consultar a branch no repositório ao concluir a publicação.
+- PR: `https://github.com/ShunWalChin/SITE-Prototipo-Agro_Fort/pull/1`.
