@@ -50,7 +50,7 @@ export function ContactForm() {
   }
 
   return (
-    <form className="contact-form" onSubmit={submit}>
+    <form className="contact-form" onSubmit={submit} aria-busy={state === "sending"}>
       <div className="form-grid">
         <label>
           Seu nome

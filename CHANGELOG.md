@@ -6,6 +6,10 @@ Este projeto segue versionamento semântico para releases planejadas. As datas u
 
 ### Adicionado
 
+- design system Agrofort com regras globais e especializações para home,
+  catálogo e contato;
+- auditoria UI/UX baseada nas heurísticas do UI UX Pro Max;
+- alternativa textual acessível para o radar sensorial;
 - testes unitários e de contrato para domínio, site e endpoint de leads;
 - scripts unificados para lint, tipos, testes, build e auditoria de dependências;
 - documentação completa de arquitetura, operação, webhook, testes, segurança e uso;
@@ -15,6 +19,12 @@ Este projeto segue versionamento semântico para releases planejadas. As datas u
 
 ### Alterado
 
+- tipografia auxiliar, contraste, alvos de toque e feedback active refinados;
+- mini cards de produto agora movem e restauram o foco;
+- animações GSAP, Anime.js, canvas e carrossel reagem a movimento reduzido e
+  pausam quando não estão visíveis;
+- página de premiações reorganizada para eliminar overflow horizontal;
+- formulário expõe estado ocupado durante o envio;
 - carregamento WebGL por proximidade da viewport;
 - modo gráfico adaptativo em mobile e para preferência de movimento reduzido;
 - partículas e carrossel pausam fora da viewport;

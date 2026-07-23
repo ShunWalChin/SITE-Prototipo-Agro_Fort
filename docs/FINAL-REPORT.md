@@ -12,6 +12,13 @@ A revisão cobriu experiência desktop/mobile, acessibilidade, desempenho, códi
 
 ## Mudanças principais
 
+- design system consolidado e refinamento UI/UX aplicado com heurísticas do UI
+  UX Pro Max, preservando a identidade Agrofort;
+- legibilidade, contraste, feedback, movimento reduzido e alvos de toque
+  aprimorados em todas as rotas;
+- mini cards com gestão de foco, radar com alternativa textual e formulário com
+  estado ocupado acessível;
+- overflow horizontal da página de premiações eliminado;
 - UX mobile refinada: drawer, backdrop, Escape, foco, alvos de toque e formulários sem zoom;
 - acessibilidade: skip link, foco consistente, landmarks, controles nomeados e estado anunciado;
 - desempenho: WebGL sob demanda, modo gráfico adaptativo, pausa fora da viewport e menos preloads;
@@ -60,11 +67,13 @@ A execução foi automatizada, passiva e não destrutiva, complementada por prob
 - testes: `docs/TESTING.md`;
 - segurança: `docs/SECURITY.md`;
 - manual: `docs/USER-MANUAL.md`;
-- evidência ZAP: `docs/security/raw/`.
+- evidência ZAP: `docs/security/raw/`;
+- auditoria UI/UX: `docs/UI-UX-PRO-MAX-AUDIT.md`;
+- design system: `design-system/agrofort/MASTER.md`.
 
 ## Publicação
 
-- release final: `20260723-154852`;
+- release final: `20260723-161843`;
 - contêiner: `agrofort-web`, healthcheck aprovado;
 - Nginx: configuração validada antes do reload e backup preservado;
 - branch GitHub: `agent/full-system-audit`;

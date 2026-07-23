@@ -14,12 +14,22 @@ export function ProductPreviewGrid() {
   const [openSlug, setOpenSlug] = useState<string | null>(null);
   const rootRef = useRef<HTMLDivElement>(null);
 
+  const restoreTriggerFocus = useCallback((slug: string) => {
+    window.requestAnimationFrame(() => {
+      rootRef.current
+        ?.querySelector<HTMLButtonElement>(`[data-preview-trigger="${slug}"]`)
+        ?.focus();
+    });
+  }, []);
+
   const closeCard = useCallback(() => {
     if (!openSlug || !rootRef.current) return;
+    const slugToClose = openSlug;
     const panel = rootRef.current.querySelector<HTMLElement>(`[data-preview-panel="${openSlug}"]`);
 
     if (!panel || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       setOpenSlug(null);
+      restoreTriggerFocus(slugToClose);
       return;
     }
 
@@ -27,26 +37,38 @@ export function ProductPreviewGrid() {
       opacity: 0,
       y: 22,
       scale: 0.97,
-      duration: 220,
+      duration: 180,
       ease: "inQuad",
-      onComplete: () => setOpenSlug(null),
+      onComplete: () => {
+        setOpenSlug(null);
+        restoreTriggerFocus(slugToClose);
+      },
     });
-  }, [openSlug]);
+  }, [openSlug, restoreTriggerFocus]);
 
   useEffect(() => {
     if (!openSlug || !rootRef.current) return;
     const panel = rootRef.current.querySelector<HTMLElement>(`[data-preview-panel="${openSlug}"]`);
-    if (!panel || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!panel) return;
+
+    const focusFrame = window.requestAnimationFrame(() => {
+      panel.querySelector<HTMLButtonElement>(".preview-popover__close")?.focus();
+    });
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return () => window.cancelAnimationFrame(focusFrame);
+    }
 
     const entrance = animate(panel, {
       opacity: [0, 1],
-      y: [30, 0],
-      scale: [0.95, 1],
-      duration: 520,
+      y: [22, 0],
+      scale: [0.97, 1],
+      duration: 420,
       ease: "outExpo",
     });
 
     return () => {
+      window.cancelAnimationFrame(focusFrame);
       entrance.cancel();
     };
   }, [openSlug]);
@@ -92,6 +114,7 @@ export function ProductPreviewGrid() {
               aria-expanded={isOpen}
               aria-controls={panelId}
               aria-label={`${isOpen ? "Fechar detalhes de" : "Conhecer"} ${product.name}`}
+              data-preview-trigger={product.slug}
               onClick={() => toggleCard(product.slug)}
             >
               <span className="preview-card__action" aria-hidden="true">
@@ -103,7 +126,7 @@ export function ProductPreviewGrid() {
             {isOpen && (
               <div className="preview-popover" id={panelId} data-preview-panel={product.slug} role="region" aria-label={`Detalhes de ${product.name}`}>
                 <button className="preview-popover__close" type="button" onClick={closeCard} aria-label={`Fechar detalhes de ${product.name}`}>
-                  <X />
+                  <X aria-hidden="true" />
                 </button>
                 <span className="preview-popover__index">{String(index + 1).padStart(2, "0")}</span>
                 <p className="preview-popover__category">{product.category}</p>
@@ -113,7 +136,7 @@ export function ProductPreviewGrid() {
                   {product.detail.split("•").map((item) => <li key={item}>{item.trim()}</li>)}
                 </ul>
                 <Link href="/catalogo" className="preview-popover__link">
-                  Ver no catálogo <ArrowUpRight />
+                  Ver no catálogo <ArrowUpRight aria-hidden="true" />
                 </Link>
               </div>
             )}

@@ -20,7 +20,7 @@ export function FlavorRadar({ product }: { product: Product }) {
 
   return (
     <div className="flavor-radar">
-      <svg viewBox={`0 0 ${size} ${size}`} role="img" aria-label={`Perfil sensorial do ${product.name}`}>
+      <svg viewBox={`0 0 ${size} ${size}`} aria-hidden="true">
         <g transform={`translate(${center} ${center})`}>
           {[25, 50, 75, 100].map((level) => {
             const levelRadius = scale(level);
@@ -68,6 +68,14 @@ export function FlavorRadar({ product }: { product: Product }) {
         <i />
         <span>Marcante</span>
       </div>
+      <dl className="sr-only" aria-label={`Perfil sensorial do ${product.name}`}>
+        {labels.map((label, index) => (
+          <div key={label}>
+            <dt>{label}</dt>
+            <dd>{values[index]} de 100</dd>
+          </div>
+        ))}
+      </dl>
     </div>
   );
 }

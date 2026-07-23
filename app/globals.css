@@ -12,8 +12,23 @@
   --rust: #80351f;
   --gold: #d4a849;
   --ink: #15372a;
-  --muted: #6b766e;
+  --muted: #5f6c63;
   --line: rgba(7, 62, 42, 0.17);
+  --radius-sm: 2px;
+  --radius-md: 12px;
+  --radius-organic: 18px 8px 18px 8px;
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 24px;
+  --space-lg: 32px;
+  --space-xl: 48px;
+  --space-2xl: 64px;
+  --space-3xl: 96px;
+  --motion-fast: 180ms;
+  --motion-standard: 280ms;
+  --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
+  --shadow-soft: 0 12px 34px rgba(3, 41, 28, 0.1);
+  --shadow-lifted: 0 28px 70px rgba(3, 41, 28, 0.18);
   --font-display: Georgia, "Times New Roman", serif;
   --font-sans: Arial, sans-serif;
 }
@@ -64,6 +79,10 @@ a {
   touch-action: manipulation;
 }
 
+button {
+  cursor: pointer;
+}
+
 img {
   display: block;
   max-width: 100%;
@@ -86,7 +105,10 @@ img {
   z-index: 1000;
   top: 12px;
   left: 12px;
+  display: inline-flex;
+  min-height: 44px;
   padding: 12px 16px;
+  align-items: center;
   border-radius: 2px;
   background: var(--cream);
   color: var(--forest-deep);
@@ -121,7 +143,7 @@ main:focus {
   gap: 10px;
   margin: 0 0 22px;
   color: var(--terracotta);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 800;
   letter-spacing: 0.2em;
   line-height: 1.3;
@@ -195,12 +217,18 @@ main:focus {
   font-weight: 800;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+  cursor: pointer;
   transition: transform 180ms ease, background 180ms ease, color 180ms ease, border-color 180ms ease;
 }
 
 .button:hover {
   transform: translateY(-2px);
   background: var(--forest-soft);
+}
+
+.button:active {
+  transform: translateY(0);
+  filter: brightness(0.94);
 }
 
 .button:focus-visible,
@@ -224,7 +252,7 @@ main:focus {
 .button--small {
   min-height: 44px;
   padding-inline: 18px;
-  font-size: 0.68rem;
+  font-size: 0.75rem;
 }
 
 .button--cream {
@@ -270,10 +298,15 @@ main:focus {
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  cursor: pointer;
 }
 
 .text-link--light {
   color: var(--cream);
+}
+
+.text-link:active {
+  opacity: 0.72;
 }
 
 .grain {
@@ -327,7 +360,7 @@ main:focus {
   left: 0;
   white-space: nowrap;
   font-family: var(--font-sans);
-  font-size: 0.46rem;
+  font-size: 0.7rem;
   font-weight: 800;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -409,7 +442,7 @@ main:focus {
   min-height: 44px;
   align-items: center;
   padding: 12px 0;
-  font-size: 0.73rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.06em;
 }
@@ -456,6 +489,7 @@ main:focus {
   border-radius: 50%;
   background: transparent;
   color: inherit;
+  cursor: pointer;
 }
 
 .mobile-nav {
@@ -531,7 +565,7 @@ main:focus {
   align-items: center;
   gap: 10px;
   color: #e9dcb9;
-  font-size: 0.67rem;
+  font-size: 0.75rem;
   font-weight: 750;
   letter-spacing: 0.13em;
   text-transform: uppercase;
@@ -648,7 +682,7 @@ main:focus {
 .hero-product__label span,
 .hero-product__label small {
   color: rgba(255, 248, 233, 0.62);
-  font-size: 0.58rem;
+  font-size: 0.7rem;
   letter-spacing: 0.13em;
   text-transform: uppercase;
 }
@@ -666,10 +700,12 @@ main:focus {
   bottom: 28px;
   left: 50%;
   display: flex;
+  min-height: 44px;
+  padding: 10px 4px;
   align-items: center;
   gap: 10px;
   color: rgba(255, 248, 233, 0.58);
-  font-size: 0.58rem;
+  font-size: 0.7rem;
   font-weight: 750;
   letter-spacing: 0.13em;
   text-transform: uppercase;
@@ -753,7 +789,7 @@ main:focus {
   top: 38px;
   right: 36px;
   color: rgba(7, 62, 42, 0.35);
-  font-size: 0.62rem;
+  font-size: 0.7rem;
   font-weight: 800;
   letter-spacing: 0.14em;
 }
@@ -814,7 +850,7 @@ main:focus {
   top: 26px;
   left: 26px;
   color: var(--terracotta);
-  font-size: 0.63rem;
+  font-size: 0.7rem;
   font-weight: 800;
   letter-spacing: 0.16em;
 }
@@ -842,7 +878,7 @@ main:focus {
 .preview-card__title p {
   margin: 0 0 8px;
   color: var(--muted);
-  font-size: 0.59rem;
+  font-size: 0.75rem;
   font-weight: 800;
   letter-spacing: 0.13em;
   text-transform: uppercase;
@@ -876,15 +912,15 @@ main:focus {
   top: 22px;
   right: 22px;
   display: inline-flex;
-  min-height: 34px;
-  padding: 0 10px 0 12px;
+  min-height: 44px;
+  padding: 0 14px 0 16px;
   align-items: center;
   gap: 8px;
   border: 1px solid rgba(7, 62, 42, 0.22);
   border-radius: 999px;
   background: rgba(251, 247, 238, 0.82);
   color: var(--forest);
-  font-size: 0.54rem;
+  font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -901,6 +937,12 @@ main:focus {
 .preview-card:not(.is-open):hover .preview-card__action {
   border-color: var(--forest);
   background: var(--forest);
+  color: var(--cream);
+}
+
+.preview-card__open:active .preview-card__action {
+  border-color: var(--terracotta);
+  background: var(--terracotta);
   color: var(--cream);
 }
 
@@ -958,8 +1000,8 @@ main:focus {
   top: 14px;
   right: 14px;
   display: grid;
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
   place-items: center;
   border: 1px solid rgba(255, 248, 233, 0.25);
   border-radius: 50%;
@@ -973,6 +1015,13 @@ main:focus {
   background: var(--cream);
   color: var(--forest);
   transform: rotate(4deg);
+}
+
+.preview-popover__close:active,
+.adenilde-carousel__controls button:active,
+.catalog-controls button:active {
+  transform: none;
+  filter: brightness(0.88);
 }
 
 .preview-popover__close:focus-visible,
@@ -998,7 +1047,7 @@ main:focus {
 .preview-popover__category {
   margin: 0 0 7px;
   color: rgba(255, 248, 233, 0.56);
-  font-size: 0.52rem;
+  font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.13em;
   text-transform: uppercase;
@@ -1033,11 +1082,11 @@ main:focus {
 }
 
 .preview-popover li {
-  padding: 5px 8px;
+  padding: 7px 10px;
   border: 1px solid rgba(255, 248, 233, 0.18);
   border-radius: 999px;
   color: rgba(255, 248, 233, 0.7);
-  font-size: 0.48rem;
+  font-size: 0.75rem;
   font-weight: 750;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -1047,12 +1096,13 @@ main:focus {
   position: relative;
   z-index: 2;
   display: inline-flex;
+  min-height: 44px;
   padding-bottom: 4px;
   align-items: center;
   gap: 8px;
   border-bottom: 1px solid rgba(255, 248, 233, 0.56);
   color: var(--cream);
-  font-size: 0.58rem;
+  font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -1139,7 +1189,7 @@ main:focus {
 
 .real-products figcaption span {
   color: #e5c47b;
-  font-size: 0.52rem;
+  font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.17em;
   text-transform: uppercase;
@@ -1186,7 +1236,7 @@ main:focus {
 .real-products__copy > p:not(.eyebrow) {
   max-width: 540px;
   margin: 28px 0 35px;
-  color: #58675e;
+  color: #55645b;
   line-height: 1.76;
 }
 
@@ -1301,7 +1351,7 @@ main:focus {
 
 .award-band__topline > span {
   color: rgba(255, 248, 233, 0.48);
-  font-size: 0.58rem;
+  font-size: 0.7rem;
   font-weight: 750;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -1369,7 +1419,7 @@ main:focus {
   top: 30px;
   right: 0;
   color: rgba(255, 248, 233, 0.42);
-  font-size: 0.52rem;
+  font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -1513,7 +1563,7 @@ main:focus {
   position: relative;
   z-index: 2;
   max-width: 84px;
-  font-size: clamp(0.42rem, 0.6vw, 0.58rem);
+  font-size: clamp(0.58rem, 0.65vw, 0.7rem);
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -1577,7 +1627,7 @@ main:focus {
 .award-proof dd {
   margin: 0;
   color: rgba(255, 248, 233, 0.52);
-  font-size: 0.55rem;
+  font-size: 0.7rem;
   font-weight: 800;
   letter-spacing: 0.12em;
   line-height: 1.5;
@@ -1604,7 +1654,7 @@ main:focus {
   bottom: 16px;
   left: 18px;
   color: var(--muted);
-  font-size: 0.58rem;
+  font-size: 0.7rem;
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -1709,7 +1759,7 @@ main:focus {
   max-width: 500px;
   margin: 0 0 29px;
   padding-left: 39px;
-  color: #58675e;
+  color: #55645b;
   font-size: 0.98rem;
   line-height: 1.75;
 }
@@ -1726,7 +1776,7 @@ main:focus {
 
 .adenilde-story__identity span {
   color: var(--terracotta);
-  font-size: 0.59rem;
+  font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -1748,6 +1798,7 @@ main:focus {
 
 .adenilde-story__contacts a {
   display: grid;
+  min-height: 44px;
   padding: 9px 0;
   grid-template-columns: 25px 1fr;
   gap: 11px;
@@ -1777,7 +1828,7 @@ main:focus {
   display: block;
   margin-bottom: 3px;
   color: var(--muted);
-  font-size: 0.52rem;
+  font-size: 0.7rem;
   font-weight: 800;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -1838,7 +1889,7 @@ main:focus {
 .adenilde-carousel__header span,
 .adenilde-carousel__caption span {
   color: #e5c47b;
-  font-size: 0.52rem;
+  font-size: 0.7rem;
   font-weight: 800;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -1855,7 +1906,7 @@ main:focus {
   align-items: center;
   gap: 9px;
   color: var(--cream) !important;
-  font-size: 0.59rem !important;
+  font-size: 0.72rem !important;
 }
 
 .adenilde-carousel__counter i {
@@ -1949,12 +2000,13 @@ main:focus {
   display: flex;
   min-width: 0;
   align-items: center;
-  gap: 7px;
+  gap: 8px;
 }
 
 .adenilde-carousel__pagination button {
   position: relative;
-  width: clamp(22px, 3.3vw, 39px);
+  width: clamp(44px, 3.5vw, 52px);
+  min-width: 44px;
   height: 44px;
   padding: 0;
   border: 0;
@@ -1998,7 +2050,7 @@ main:focus {
 
 .adenilde-carousel__controls {
   display: flex;
-  gap: 7px;
+  gap: 8px;
 }
 
 .adenilde-carousel__controls button {
@@ -2036,7 +2088,7 @@ main:focus {
   gap: 20px;
   align-items: center;
   color: var(--forest);
-  font-size: 0.59rem;
+  font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -2122,7 +2174,7 @@ main:focus {
 .footer-label {
   margin: 0 0 10px;
   color: #e4c477;
-  font-size: 0.62rem;
+  font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -2153,7 +2205,7 @@ main:focus {
   justify-content: space-between;
   border-top: 1px solid rgba(255, 248, 233, 0.12);
   color: rgba(255, 248, 233, 0.45);
-  font-size: 0.58rem;
+  font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -2324,7 +2376,7 @@ main:focus {
 .catalog-photo-proof__copy dd {
   margin: 0;
   color: var(--muted);
-  font-size: 0.5rem;
+  font-size: 0.7rem;
   font-weight: 800;
   letter-spacing: 0.11em;
   line-height: 1.35;
@@ -2399,7 +2451,7 @@ main:focus {
 
 .catalog-photo-proof__gallery figcaption span {
   color: #e5c47b;
-  font-size: 0.5rem;
+  font-size: 0.7rem;
   font-weight: 800;
   letter-spacing: 0.17em;
   text-transform: uppercase;
@@ -2481,7 +2533,7 @@ main:focus {
   align-items: center;
   gap: 8px;
   color: var(--muted);
-  font-size: 0.59rem;
+  font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.13em;
   text-transform: uppercase;
@@ -2518,7 +2570,7 @@ main:focus {
 .catalog-meta {
   margin: 0;
   color: var(--terracotta);
-  font-size: 0.64rem;
+  font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.11em;
   text-transform: uppercase;
@@ -2559,7 +2611,7 @@ main:focus {
 .radar-label {
   fill: var(--muted);
   font-family: var(--font-sans);
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.03em;
 }
@@ -2569,7 +2621,7 @@ main:focus {
   width: 86px;
   gap: 7px;
   color: var(--muted);
-  font-size: 0.56rem;
+  font-size: 0.7rem;
   font-weight: 700;
   text-transform: uppercase;
 }
@@ -2608,7 +2660,7 @@ main:focus {
 
 .catalog-controls span {
   color: var(--muted);
-  font-size: 0.66rem;
+  font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.1em;
 }
@@ -2631,7 +2683,7 @@ main:focus {
   background: transparent;
   color: var(--muted);
   cursor: pointer;
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 750;
   gap: 7px;
   text-align: left;
@@ -2644,13 +2696,18 @@ main:focus {
 
 .product-tabs button span {
   color: var(--terracotta);
-  font-size: 0.52rem;
+  font-size: 0.7rem;
   letter-spacing: 0.13em;
 }
 
 .product-tabs button:hover,
 .product-tabs button.is-active {
   background: var(--forest);
+  color: var(--cream);
+}
+
+.product-tabs button:active {
+  background: var(--terracotta);
   color: var(--cream);
 }
 
@@ -2680,8 +2737,22 @@ main:focus {
 .awards-page__grid {
   display: grid;
   align-items: center;
-  grid-template-columns: 1.12fr 0.88fr;
-  gap: clamp(70px, 9vw, 130px);
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(64px, 8vw, 112px);
+}
+
+.awards-page__grid > * {
+  min-width: 0;
+}
+
+.awards-page .awards-showcase {
+  width: 100%;
+  max-width: 1050px;
+  margin-inline: auto;
+}
+
+.awards-page .awards-copy {
+  max-width: 760px;
 }
 
 .awards-copy h2 {
@@ -2795,7 +2866,7 @@ main:focus {
 }
 
 .about-image__caption span {
-  font-size: 0.56rem;
+  font-size: 0.7rem;
   font-weight: 800;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -2830,7 +2901,7 @@ main:focus {
   margin-top: 14px;
   color: var(--terracotta);
   font-family: var(--font-sans);
-  font-size: 0.58rem;
+  font-size: 0.72rem;
   font-style: normal;
   font-weight: 800;
   letter-spacing: 0.13em;
@@ -2871,7 +2942,7 @@ main:focus {
   top: 42px;
   right: 38px;
   color: var(--muted);
-  font-size: 0.6rem;
+  font-size: 0.7rem;
 }
 
 .values-grid h3 {
@@ -2959,7 +3030,7 @@ main:focus {
   display: block;
   margin-bottom: 5px;
   color: var(--muted);
-  font-size: 0.56rem;
+  font-size: 0.7rem;
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -3007,7 +3078,7 @@ main:focus {
   display: grid;
   gap: 8px;
   color: rgba(255, 248, 233, 0.72);
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   font-weight: 750;
   letter-spacing: 0.07em;
   text-transform: uppercase;
@@ -3087,7 +3158,7 @@ main:focus {
 .form-privacy {
   margin: -3px 0 0;
   color: rgba(255, 248, 233, 0.43);
-  font-size: 0.62rem;
+  font-size: 0.72rem;
   line-height: 1.55;
 }
 
@@ -3371,7 +3442,7 @@ main:focus {
   .mobile-nav > p {
     margin: 0 0 22px;
     color: #e5c47b;
-    font-size: 0.58rem;
+    font-size: 0.7rem;
     font-weight: 800;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -3392,7 +3463,7 @@ main:focus {
   .mobile-nav a > span {
     color: #e5c47b;
     font-family: var(--font-sans);
-    font-size: 0.52rem;
+    font-size: 0.7rem;
     font-weight: 800;
     letter-spacing: 0.12em;
   }
@@ -3408,7 +3479,7 @@ main:focus {
     justify-content: center;
     border: 1px solid rgba(255, 248, 233, 0.42);
     font-family: var(--font-sans);
-    font-size: 0.66rem;
+    font-size: 0.72rem;
     font-weight: 800;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -3632,7 +3703,7 @@ main:focus {
   }
 
   .catalog-photo-proof__copy dd {
-    font-size: 0.44rem;
+    font-size: 0.7rem;
   }
 
   .catalog-photo-proof__gallery {
@@ -3748,19 +3819,24 @@ main:focus {
   .adenilde-carousel__footer {
     min-height: 62px;
     padding-top: 13px;
+    flex-wrap: wrap;
     gap: 8px;
   }
 
   .adenilde-carousel__pagination {
-    gap: 4px;
+    width: 100%;
+    justify-content: space-between;
+    gap: 8px;
   }
 
   .adenilde-carousel__pagination button {
-    width: clamp(24px, 6vw, 28px);
+    width: 44px;
+    flex: 1 1 44px;
   }
 
   .adenilde-carousel__controls {
-    gap: 5px;
+    margin-left: auto;
+    gap: 8px;
   }
 
   .adenilde-carousel__controls button {
@@ -3797,7 +3873,7 @@ main:focus {
 
   .hero-kicker {
     margin-bottom: 30px;
-    font-size: 0.58rem;
+    font-size: 0.7rem;
   }
 
   .hero h1 {
@@ -3947,7 +4023,7 @@ main:focus {
 
   .award-medal small {
     max-width: 62px;
-    font-size: 0.34rem;
+    font-size: 0.58rem;
   }
 
   .award-proof__item {
@@ -3964,7 +4040,7 @@ main:focus {
   }
 
   .award-proof dd {
-    font-size: 0.48rem;
+    font-size: 0.7rem;
   }
 
   .final-cta h2 {

@@ -112,25 +112,26 @@ export function AdenildeStoryCarousel() {
     const positionTrack = (immediate = false) => {
       const activeSlide = track.children.item(activeIndex) as HTMLElement | null;
       if (!activeSlide) return;
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
       const maximumOffset = Math.max(0, track.scrollWidth - viewport.clientWidth);
       const targetOffset = Math.min(activeSlide.offsetLeft, maximumOffset);
 
       gsap.to(track, {
         x: -targetOffset,
-        duration: immediate ? 0 : 0.95,
+        duration: immediate || reduceMotion ? 0 : 0.72,
         ease: "power4.inOut",
         overwrite: true,
       });
 
-      if (!immediate) {
+      if (!immediate && !reduceMotion) {
         const image = activeSlide.querySelector(".adenilde-carousel__image");
         const caption = activeSlide.querySelector(".adenilde-carousel__caption");
-        gsap.fromTo(image, { scale: 1.075 }, { scale: 1, duration: 1.25, ease: "power3.out", overwrite: true });
+        gsap.fromTo(image, { scale: 1.055 }, { scale: 1, duration: 0.85, ease: "power3.out", overwrite: true });
         gsap.fromTo(
           caption,
-          { y: 24, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.72, delay: 0.18, ease: "power3.out", overwrite: true },
+          { y: 18, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.55, delay: 0.12, ease: "power3.out", overwrite: true },
         );
       }
     };

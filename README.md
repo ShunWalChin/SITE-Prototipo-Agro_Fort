@@ -58,6 +58,7 @@ store/                 estado cliente do catálogo
 public/                imagens, marca e security.txt
 deploy/                release remoto e políticas Nginx
 docs/                  arquitetura, operação, testes, segurança e manual
+design-system/         identidade, interação e regras responsivas por página
 ```
 
 O WebGL abaixo da dobra é inicializado por proximidade da viewport. Em telas pequenas ou com movimento reduzido, a renderização reduz DPR, sombras e animação contínua.
@@ -71,6 +72,8 @@ O WebGL abaixo da dobra é inicializado por proximidade da viewport. Em telas pe
 - [Segurança e pentest](docs/SECURITY.md)
 - [Manual do sistema](docs/USER-MANUAL.md)
 - [Relatório técnico da revisão](docs/FINAL-REPORT.md)
+- [Auditoria e refinamento UI/UX Pro Max](docs/UI-UX-PRO-MAX-AUDIT.md)
+- [Design system Agrofort](design-system/agrofort/MASTER.md)
 - [Política de segurança](SECURITY.md)
 - [Histórico de mudanças](CHANGELOG.md)
 

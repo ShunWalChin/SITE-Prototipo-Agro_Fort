@@ -12,7 +12,8 @@ export function ParticleField({ tone = "light" }: { tone?: "light" | "gold" }) {
     if (!canvas) return;
     const context = canvas.getContext("2d");
     if (!context) return;
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let reduced = motionQuery.matches;
     let frame = 0;
     let isVisible = false;
     let width = 0;
@@ -66,6 +67,10 @@ export function ParticleField({ tone = "light" }: { tone?: "light" | "gold" }) {
       if (isVisible && document.visibilityState === "visible") start();
       else cancelAnimationFrame(frame);
     };
+    const handleMotionPreference = (event: MediaQueryListEvent) => {
+      reduced = event.matches;
+      handleVisibility();
+    };
     const resizeObserver = new ResizeObserver(resize);
     const visibilityObserver = new IntersectionObserver(
       ([entry]) => {
@@ -77,12 +82,14 @@ export function ParticleField({ tone = "light" }: { tone?: "light" | "gold" }) {
     resizeObserver.observe(canvas);
     visibilityObserver.observe(canvas);
     document.addEventListener("visibilitychange", handleVisibility);
+    motionQuery.addEventListener("change", handleMotionPreference);
     resize();
 
     return () => {
       resizeObserver.disconnect();
       visibilityObserver.disconnect();
       document.removeEventListener("visibilitychange", handleVisibility);
+      motionQuery.removeEventListener("change", handleMotionPreference);
       cancelAnimationFrame(frame);
     };
   }, [tone]);
