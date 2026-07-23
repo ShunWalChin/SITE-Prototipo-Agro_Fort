@@ -61,7 +61,7 @@ export default function Home() {
               <div className="hero-product__label">
                 <span>Em destaque</span>
                 <strong>Meia Cura</strong>
-                <small>Arraste para sentir a textura</small>
+                <small>Macio por dentro, dourado por fora</small>
               </div>
             </div>
           </div>

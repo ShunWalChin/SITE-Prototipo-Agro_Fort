@@ -20,6 +20,8 @@ Este projeto segue versionamento semântico para releases planejadas. As datas u
 
 ### Alterado
 
+- Hero reequilibrada com queijo menor, grid mais respirado, hierarquia
+  tipográfica alinhada e microcopy fiel à interação disponível;
 - tipografia auxiliar, contraste, alvos de toque e feedback active refinados;
 - mini cards de produto agora movem e restauram o foco;
 - animações GSAP, Anime.js, canvas e carrossel reagem a movimento reduzido e

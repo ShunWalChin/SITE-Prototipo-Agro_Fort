@@ -74,7 +74,7 @@ A execução foi automatizada, passiva e não destrutiva, complementada por prob
 
 ## Publicação
 
-- release final: `20260723-162844`;
+- release final: `20260723-182924`;
 - contêiner: `agrofort-web`, healthcheck aprovado;
 - Nginx: configuração validada antes do reload e backup preservado;
 - branch GitHub: `agent/full-system-audit`;
